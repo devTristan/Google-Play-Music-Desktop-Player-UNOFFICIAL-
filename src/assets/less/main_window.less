@@ -13,7 +13,11 @@ html, body {
 }
 
 .window-border {
-  .fill-parent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border: @border-width solid @orange;
   border-top-width: 0;
   display: flex;
@@ -23,6 +27,7 @@ html, body {
     height: @title-bar-height + @border-width;
     background: @orange;
     display: flex;
+    flex-shrink: 0;
 
     .drag-handle {
       height: 100%;
@@ -57,20 +62,20 @@ html, body {
     }
   }
 
-  .drag-handle-large {
-    display: none;
-  }
-
   .embedded-player-container {
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 0;
     background: @grey;
     position: relative;
 
     .embedded-player {
-      height: calc(~"100vh -" (@title-bar-height + @border-width * 2));
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       display: block;
       transition: opacity 0.4s linear;
-      position: relative;
       z-index: 2;
 
       [loading] & {

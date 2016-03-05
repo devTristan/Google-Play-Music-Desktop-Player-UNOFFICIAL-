@@ -3,6 +3,58 @@ import { showDesktopSettings } from './desktopSettings';
 
 const template = [
   {
+    label: 'Google Play Music Desktop Player',
+    submenu: [
+      {
+        label: 'About Google Play Music Desktop Player',
+        role: 'about',
+      },
+      {
+        label: 'Preferences',
+        accelerator: 'Command+,',
+        click: () => showDesktopSettings(),
+      },
+      {
+        type: 'separator',
+      },
+      {
+        label: 'Hide',
+        accelerator: 'Command+H',
+        role: 'hide',
+      },
+      {
+        label: 'Hide Others',
+        accelerator: 'Command+Alt+H',
+        role: 'hideothers',
+      },
+      {
+        label: 'Show All',
+        role: 'unhide',
+      },
+      {
+        type: 'separator',
+      },
+      {
+        label: 'Quit',
+        accelerator: 'Command+Q',
+        click: () => app.quit(),
+      },
+      {
+        label: 'Toggle Developer Tools',
+        accelerator: (function() {
+          if (process.platform == 'darwin')
+            return 'Alt+Command+I';
+          else
+            return 'Ctrl+Shift+I';
+        })(),
+        click: function(item, focusedWindow) {
+          if (focusedWindow)
+            focusedWindow.toggleDevTools();
+        }
+      },
+    ],
+  },
+  {
     label: 'Edit',
     submenu: [
       {
@@ -91,45 +143,6 @@ const template = [
 ];
 
 if (process.platform === 'darwin') {
-  template.unshift({
-    label: 'Google Play Music Desktop Player',
-    submenu: [
-      {
-        label: 'About Google Play Music Desktop Player',
-        role: 'about',
-      },
-      {
-        label: 'Preferences',
-        accelerator: 'Command+,',
-        click: () => showDesktopSettings(),
-      },
-      {
-        type: 'separator',
-      },
-      {
-        label: 'Hide',
-        accelerator: 'Command+H',
-        role: 'hide',
-      },
-      {
-        label: 'Hide Others',
-        accelerator: 'Command+Alt+H',
-        role: 'hideothers',
-      },
-      {
-        label: 'Show All',
-        role: 'unhide',
-      },
-      {
-        type: 'separator',
-      },
-      {
-        label: 'Quit',
-        accelerator: 'Command+Q',
-        click: () => app.quit(),
-      },
-    ],
-  });
   // Window menu.
   template[4].submenu.push(
     {
